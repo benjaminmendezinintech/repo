@@ -60,13 +60,14 @@ function formatDate($date) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Movimientos - Sistema Financiero</title>
-    <link rel="stylesheet" href="css/table.css">
+    <title>Mis Movimientos - Sistema Financiero</title>
+    <link rel="stylesheet" href="css/body.css">
     <link rel="stylesheet" href="css/styless.css">
     <link rel="stylesheet" href="css/botton.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/26bd214a86.js" crossorigin="anonymous"></script>
-
     <style>
         .table tbody tr:nth-child(even) {
             background-color: #e3f2fd; /* Azul claro */
@@ -85,35 +86,86 @@ function formatDate($date) {
     </style>
 </head>
 <body>
-<header class="header">
-    <div class="logo">
-        <a href="dashboard.php">
-            <img src="img/Mountain.png" alt="Logo de la marca">
-        </a>
+<div class="container">
+      <div class="logo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32.519"
+          height="30.7"
+          viewBox="0 0 32.519 30.7"
+          fill="#363b46"
+        >
+          <g id="Logo" transform="translate(-90.74 -84.875)">
+            <path
+              id="B"
+              d="M14.378-30.915c-5.124,0-9.292,3.767-9.292,10.228S9.254-10.46,14.378-10.46h1.471c5.124,0,9.292-3.767,9.292-10.228s-4.168-10.228-9.292-10.228H14.378M11.7-33.456h6.819A12.768,12.768,0,0,1,31.29-20.687,12.768,12.768,0,0,1,18.522-7.919H11.7A12.768,12.768,0,0,1-1.065-20.687C-2.4-51.282,4.652-33.456,11.7-33.456Z"
+              transform="translate(91.969 123.494)"
+            />
+          </g>
+        </svg>
+      </div>
+      <ul class="link-items">
+      <li class="link-item">
+          <a href="dashboard.php" class="link">
+            <ion-icon name="cube-outline"></ion-icon>
+            <span style="--i: 2">Dashboard</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="consulta_movimientos.php" class="link">
+          <ion-icon name="swap-horizontal-outline"></ion-icon>
+          <span style="--i: 5">Mis movimientos</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+          <ion-icon name="people-outline"></ion-icon>
+            <span style="--i: 2">Usuarios</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+            <ion-icon class="noti-icon" name="notifications-outline"></ion-icon>
+            <span style="--i: 4">notifications</span>
+            <span class="num-noti">4</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+            <ion-icon name="cog-outline"></ion-icon>
+            <span style="--i: 6">settings</span>
+          </a>
+        </li>
+        <li class="link-item dark-mode">
+          <a href="#" class="link">
+            <ion-icon name="moon-outline"></ion-icon>
+            <span style="--i: 8">dark mode</span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="#" class="link">
+            <img src="user.png" alt="" />
+            <span style="--i: 9">
+              <h4>John Doe</h4>
+              <p>web developer</p>
+            </span>
+          </a>
+        </li>
+        <li class="link-item">
+          <a href="logout.php" class="link">
+          <ion-icon name="log-out-outline"></ion-icon>
+            <span style="--i: 9">
+              <h4>Salir</h4>
+            </span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <nav>
-       <ul class="nav-links">
-           <li><a href="dashboard.php">Dashboard</a></li>
-           <li><a href="consulta_movimientos.php">Consulta movimientos</a></li>
-           <li><a href="usuarios.php">Usuarios</a></li>
-       </ul>            
-    </nav>
-    <a class="btn" href='logout.php'><button>Salir</button></a>
-    <a onclick="openNav()" class="menu" href="#"><button>Menu</button></a>
-    <div id="mobile-menu" class="overlay">
-        <a onclick="closeNav()" href="" class="close">&times;</a>
-        <div class="overlay-content">
-            <a href="dashboard.php">Dashboard</a>
-            <a href="consulta_movimientos.php">Consulta Movimientos</a>
-            <a href="usuarios.php">Usuarios</a>
-            <a href="logout.php">Salir</a>
-        </div>
-    </div>
-</header>
-<script type="text/javascript" src="js/nav.js"></script>
-
-<div class="table-container">
-    <h2>Consulta de Movimientos</h2>
+<!---------------------------------------------------------------------------->
+<div class="main-content">
+    <div class="status-container">
+        <div class="status-box">
+        <h2>Consulta de Movimientos</h2>
     <?php if ($user_info['COD_PERMISOS'] == '99'): ?>
         <form method="post">
             <label for="id_tercero">ID Tercero:</label>
@@ -186,5 +238,19 @@ function formatDate($date) {
     <?php elseif ($user_info['COD_PERMISOS'] != '99'): ?>
         <p>No se encontraron movimientos para este usuario.</p>
     <?php endif; ?>
+        </div>
+</div>
+
+<!---------------------------------------------------------------------------->
+<script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="nav.js"></script>
+
 </body>
 </html>
